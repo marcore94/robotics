@@ -4,18 +4,18 @@
 		<link name="chassis">
 
 			<collision name="collision">
-				<pose>0 0 0.15 0 0 0</pose>
+				<pose>0 0 0.125 0 0 0</pose>
 				<geometry>
 					<box>
-						<size>0.2 0.8 0.1</size>
+						<size>0.2 0.8 0.05</size>
 					</box>
 				</geometry>
 			</collision>
 			<visual name="visual">
-				<pose>0 0 0.15 0 0 0</pose>
+				<pose>0 0 0.125 0 0 0</pose>
 				<geometry>
 					<box>
-						<size>0.2 0.8 0.1</size>
+						<size>0.2 0.8 0.05</size>
 					</box>
 				</geometry>
 			</visual>
@@ -55,11 +55,12 @@
 			</visual>
 
 			<collision name="right_caster_collision">
-				<pose>1.2 -0.3 0.05 0 0 0</pose>
+				<pose>1.2 -0.3 0.05 0 1.5707 1.5707</pose>
 				<geometry>
-					<sphere>
+					<cylinder>
 						<radius>.05</radius>
-					</sphere>
+						<length>.04</length>
+					</cylinder>
 				</geometry>
 				<surface>
 					<friction>
@@ -73,11 +74,12 @@
 				</surface>
 			</collision>
 			<visual name="right_caster_visual">
-				<pose>1.2 -0.3 0.05 0 0 0</pose>
+				<pose>1.2 -0.3 0.05 0 1.5707 1.5707</pose>
 				<geometry>
-					<sphere>
+					<cylinder>
 						<radius>.05</radius>
-					</sphere>
+						<length>.04</length>
+					</cylinder>
 				</geometry>
 			</visual>
 
@@ -99,11 +101,12 @@
 			</visual>
 
 			<collision name="left_caster_collision">
-				<pose>1.2 0.3 0.05 0 0 0</pose>
+				<pose>1.2 0.3 0.05 0 1.5707 1.5707</pose>
 				<geometry>
-					<sphere>
+					<cylinder>
 						<radius>.05</radius>
-					</sphere>
+						<length>.04</length>
+					</cylinder>
 				</geometry>
 				<surface>
 					<friction>
@@ -117,29 +120,30 @@
 				</surface>
 			</collision>
 			<visual name="left_caster_visual">
-				<pose>1.2 0.3 0.05 0 0 0</pose>
+				<pose>1.2 0.3 0.05 0 1.5707 1.5707</pose>
 				<geometry>
-					<sphere>
+					<cylinder>
 						<radius>.05</radius>
-					</sphere>
+						<length>.04</length>
+					</cylinder>
 				</geometry>
 			</visual>
 		</link>
 
 		<link name="diffdrive_chassis">
 			<collision name="collision">
-				<pose>0 0 0.04 0 0 0</pose>
+				<pose>0 0 0.05 0 0 0</pose>
 				<geometry>
 					<box>
-						<size>0.2 0.1 0.06</size>
+						<size>0.2 0.1 0.08</size>
 					</box>
 				</geometry>
 			</collision>
 			<visual name="collision">
-				<pose>0 0 0.04 0 0 0</pose>
+				<pose>0 0 0.05 0 0 0</pose>
 				<geometry>
 					<box>
-						<size>0.2 0.1 0.06</size>
+						<size>0.2 0.1 0.08</size>
 					</box>
 				</geometry>
 			</visual>
@@ -188,7 +192,7 @@
 		</link>
 
 		<joint type="revolute" name="diffdrive_hinge">
-			<pose>0 0 0.07 0 0 0</pose>
+			<pose>0 0 0.09 0 0 0</pose>
 			<child>diffdrive_chassis</child>
 			<parent>chassis</parent>
 			<axis>
@@ -197,7 +201,7 @@
 		</joint>
 
 		<joint type="revolute" name="left_wheel_hinge">
-			<pose>0 0 -0.02 0 0 0</pose>
+			<pose>0 0.07 0.04 0 0 0</pose>
 			<child>diffdrive_left_wheel</child>
 			<parent>diffdrive_chassis</parent>
 			<axis>
@@ -206,7 +210,7 @@
 		</joint>
 
 		<joint type="revolute" name="right_wheel_hinge">
-			<pose>0 0 0.02 0 0 0</pose>
+			<pose>0 -0.07 0.04 0 0 0</pose>
 			<child>diffdrive_right_wheel</child>
 			<parent>diffdrive_chassis</parent>
 			<axis>
