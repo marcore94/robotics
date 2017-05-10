@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <sdf version='1.4'>
 	<model name="palletjack">
-		<link name="chassis">
+		<!--<link name="chassis">
 
 			<collision name="collision">
 				<pose>0 0 0.125 0 0 0</pose>
@@ -37,7 +37,7 @@
 				</geometry>
 			</visual>-->
 
-			<collision name="right_fork_collision">
+			<!--<collision name="right_fork_collision">
 				<pose>0.7 -0.3 0.1 0 0 0</pose>
 				<geometry>
 					<box>
@@ -128,7 +128,7 @@
 					</cylinder>
 				</geometry>
 			</visual>
-		</link>
+		</link>-->
 
 		<link name="diffdrive_chassis">
 			<collision name="collision">
@@ -147,11 +147,38 @@
 					</box>
 				</geometry>
 			</visual>
+
+			<collision name="caster_collision">
+				<pose>-0.05 0 0.01 0 0 0</pose>
+				<geometry>
+					<sphere>
+						<radius>0.01</radius>
+					</sphere>
+				</geometry>
+				<surface>
+					<friction>
+						<ode>
+							<mu>0</mu>
+							<mu2>0</mu2>
+							<slip1>1.0</slip1>
+							<slip2>1.0</slip2>
+						</ode>
+					</friction>
+				</surface>
+			</collision>
+			<visual name="caster_visual">
+				<pose>-0.05 0 0.01 0 0 0</pose>
+				<geometry>
+					<sphere>
+						<radius>0.01</radius>
+					</sphere>
+				</geometry>
+			</visual>
 		</link>
 
 		<link name="diffdrive_right_wheel">
 			<collision name="collision">
-				<pose>0 -0.07 0.04 0 1.5707 1.5707</pose>
+				<pose>0.05 -0.07 0.04 0 1.5707 1.5707</pose>
 				<geometry>
 					<cylinder>
 						<radius>.04</radius>
@@ -160,7 +187,7 @@
 				</geometry>
 			</collision>
 			<visual name="visual">
-				<pose>0 -0.07 0.04 0 1.5707 1.5707</pose>
+				<pose>0.05 -0.07 0.04 0 1.5707 1.5707</pose>
 				<geometry>
 					<cylinder>
 						<radius>.04</radius>
@@ -172,7 +199,7 @@
 
 		<link name="diffdrive_left_wheel">
 			<collision name="collision">
-				<pose>0 0.07 0.04 0 1.5707 1.5707</pose>
+				<pose>0.05 0.07 0.04 0 1.5707 1.5707</pose>
 				<geometry>
 					<cylinder>
 						<radius>.04</radius>
@@ -181,7 +208,7 @@
 				</geometry>
 			</collision>
 			<visual name="visual">
-				<pose>0 0.07 0.04 0 1.5707 1.5707</pose>
+				<pose>0.05 0.07 0.04 0 1.5707 1.5707</pose>
 				<geometry>
 					<cylinder>
 						<radius>.04</radius>
@@ -191,17 +218,17 @@
 			</visual>
 		</link>
 
-		<joint type="revolute" name="diffdrive_hinge">
+		<!--<joint type="revolute" name="diffdrive_hinge">
 			<pose>0 0 0.09 0 0 0</pose>
-			<child>diffdrive_chassis</child>
-			<parent>chassis</parent>
+			<child>chassis</child>
+			<parent>diffdrive_chassis</parent>
 			<axis>
 				<xyz>0 0 1</xyz>
 			</axis>
-		</joint>
+		</joint>-->
 
 		<joint type="revolute" name="left_wheel_hinge">
-			<pose>0 0.07 0.04 0 0 0</pose>
+			<pose>0.05 0.07 0.04 0 0 0</pose>
 			<child>diffdrive_left_wheel</child>
 			<parent>diffdrive_chassis</parent>
 			<axis>
@@ -210,13 +237,15 @@
 		</joint>
 
 		<joint type="revolute" name="right_wheel_hinge">
-			<pose>0 -0.07 0.04 0 0 0</pose>
+			<pose>0.05 -0.07 0.04 0 0 0</pose>
 			<child>diffdrive_right_wheel</child>
 			<parent>diffdrive_chassis</parent>
 			<axis>
 				<xyz>0 1 0</xyz>
 			</axis>
 		</joint>
+
+		<!--<plugin name="Move_Plugin" filename="libMovePlugin.so"/>-->
 	</model>
 </sdf>
 	
