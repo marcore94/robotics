@@ -330,6 +330,7 @@
 			</axis>
 		</joint>
 
+		<plugin name="ElevateForkPlugin" filename="libElevateForkPlugin.so"/>
 		<!--<plugin name="Move_Plugin" filename="libMovePlugin.so"/>-->
 	</model>
 </sdf>
