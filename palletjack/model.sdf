@@ -62,6 +62,23 @@
 				</geometry>
 			</visual>
 
+			<collision name="frontal_cover_collision">
+				<pose>-0.05 0 0.14 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.1 0.8 0.1</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="frontal_cover_visual">
+				<pose>-0.05 0 0.14 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.1 0.8 0.1</size>
+					</box>
+				</geometry>
+			</visual>
+
 			<collision name="right_fork_collision">
 				<pose>0.7 -0.3 0.04 0 0 0</pose>
 				<geometry>
@@ -209,7 +226,110 @@
 			</axis>
 		</joint>
 
+		<link name="elevating_fork">
+			<pose>0.05 0 0.175 0 0 0</pose>
+			<collision name="collision">
+				<geometry>
+					<box>
+						<size>0.1 0.8 0.05</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="visual">
+				<geometry>
+					<box>
+						<size>0.1 0.8 0.05</size>
+					</box>
+				</geometry>
+			</visual>
+
+			<collision name="elevating_right_fork_collision">
+				<pose>0.65 -0.3 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>1.2 0.2 0.05</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="elevating_right_fork_visual">
+				<pose>0.65 -0.3 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>1.2 0.2 0.05</size>
+					</box>
+				</geometry>
+			</visual>
+
+			<collision name="elevating_left_fork_collision">
+				<pose>0.65 0.3 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>1.2 0.2 0.05</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="elevating_left_fork_visual">
+				<pose>0.65 0.3 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>1.2 0.2 0.05</size>
+					</box>
+				</geometry>
+			</visual>
+		</link>
+
+		<joint type="prismatic" name="right_prism">
+			<pose>0 -0.3 -0.025 0 0 0</pose>
+			<child>elevating_fork</child>
+			<parent>chassis</parent>
+			<axis>
+				<xyz>0 0 1</xyz>
+				<limit>
+					<lower>0</lower>
+					<upper>0.05</upper>
+				</limit>
+			</axis>
+		</joint>
+
+		<joint type="prismatic" name="left_prism">
+			<pose>0 0.3 -0.025 0 0 0</pose>
+			<child>elevating_fork</child>
+			<parent>chassis</parent>
+			<axis>
+				<xyz>0 0 1</xyz>
+				<limit>
+					<lower>0</lower>
+					<upper>0.05</upper>
+				</limit>
+			</axis>
+		</joint>
+
+		<joint type="prismatic" name="right_back_prism">
+			<pose>1.15 -0.3 -0.025 0 0 0</pose>
+			<child>elevating_fork</child>
+			<parent>chassis</parent>
+			<axis>
+				<xyz>0 0 1</xyz>
+				<limit>
+					<lower>0</lower>
+					<upper>0.05</upper>
+				</limit>
+			</axis>
+		</joint>
+
+		<joint type="prismatic" name="left_back_prism">
+			<pose>1.15 0.3 -0.025 0 0 0</pose>
+			<child>elevating_fork</child>
+			<parent>chassis</parent>
+			<axis>
+				<xyz>0 0 1</xyz>
+				<limit>
+					<lower>0</lower>
+					<upper>0.05</upper>
+				</limit>
+			</axis>
+		</joint>
+
 		<!--<plugin name="Move_Plugin" filename="libMovePlugin.so"/>-->
 	</model>
 </sdf>
-	
