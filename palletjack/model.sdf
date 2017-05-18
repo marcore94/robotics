@@ -2,9 +2,13 @@
 <sdf version='1.4'>
 	<model name="palletjack">
 		<link name="chassis">
-			<pose>0 0 0.06 0 0 0</pose>
+			<pose>0.6 0 0.11 0 0 0</pose>
+			<inertial>
+				<mass>100</mass>
+			</inertial>
 			<!--DIFFERENTIAL DRIVE CHASSIS-->
 			<collision name="diffdrive_collision">
+				<pose>-0.6 0 -0.05 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>0.2 0.1 0.08</size>
@@ -12,6 +16,7 @@
 				</geometry>
 			</collision>
 			<visual name="diffdrive_visual">
+				<pose>-0.6 0 -0.05 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>0.2 0.1 0.08</size>
@@ -19,36 +24,9 @@
 				</geometry>
 			</visual>
 
-			<collision name="diffdrive_caster_collision">
-				<pose>-0.05 0 -0.04 0 0 0</pose>
-				<geometry>
-					<sphere>
-						<radius>0.02</radius>
-					</sphere>
-				</geometry>
-				<surface>
-					<friction>
-						<ode>
-							<mu>0</mu>
-							<mu2>0</mu2>
-							<slip1>1.0</slip1>
-							<slip2>1.0</slip2>
-						</ode>
-					</friction>
-				</surface>
-			</collision>
-			<visual name="diffdrive_caster_visual">
-				<pose>-0.05 0 -0.04 0 0 0</pose>
-				<geometry>
-					<sphere>
-						<radius>0.02</radius>
-					</sphere>
-				</geometry>
-			</visual>
-
 			<!--FRONT STRUCTURE-->
 			<collision name="collision">
-				<pose>0 0 0.065 0 0 0</pose>
+				<pose>-0.6 0 0.015 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>0.2 0.8 0.05</size>
@@ -56,7 +34,7 @@
 				</geometry>
 			</collision>
 			<visual name="visual">
-				<pose>0 0 0.065 0 0 0</pose>
+				<pose>-0.6 0 0.015 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>0.2 0.8 0.05</size>
@@ -65,7 +43,7 @@
 			</visual>
 
 			<collision name="frontal_cover_collision">
-				<pose>-0.05 0 0.14 0 0 0</pose>
+				<pose>-0.65 0 0.09 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>0.1 0.8 0.1</size>
@@ -73,7 +51,7 @@
 				</geometry>
 			</collision>
 			<visual name="frontal_cover_visual">
-				<pose>-0.05 0 0.14 0 0 0</pose>
+				<pose>-0.65 0 0.09 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>0.1 0.8 0.1</size>
@@ -83,7 +61,7 @@
 
 			<!--LASER STRUCTURE and SENSOR-->
 			<collision name="laser_cylinder_collision">
-				<pose>-0.05 0 0.21 0 0 0</pose>
+				<pose>-0.65 0 0.16 0 0 0</pose>
 				<geometry>
 					<cylinder>
 						<radius>0.02</radius>
@@ -92,7 +70,7 @@
 				</geometry>
 			</collision>
 			<visual name="laser_cylinder_visual">
-				<pose>-0.05 0 0.21 0 0 0</pose>
+				<pose>-0.65 0 0.16 0 0 0</pose>
 				<geometry>
 					<cylinder>
 						<radius>0.02</radius>
@@ -101,7 +79,7 @@
 				</geometry>
 			</visual>
 			<sensor name="laser" type="ray">
-				<pose>-0.03 0 0.21 0 -0 0</pose>
+				<pose>-0.63 0 0.16 0 -0 0</pose>
 				<ray>
 					<scan>
 						<horizontal>
@@ -144,7 +122,7 @@
 
 			<!--FORKS-->
 			<collision name="right_fork_collision">
-				<pose>0.7 -0.3 0.04 0 0 0</pose>
+				<pose>0.1 -0.3 -0.01 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>1.2 0.2 0.1</size>
@@ -152,7 +130,7 @@
 				</geometry>
 			</collision>
 			<visual name="right_fork_visual">
-				<pose>0.7 -0.3 0.04 0 0 0</pose>
+				<pose>0.1 -0.3 -0.01 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>1.2 0.2 0.1</size>
@@ -161,7 +139,7 @@
 			</visual>
 
 			<collision name="right_caster_collision">
-				<pose>1.2 -0.3 -0.01 0 0 0</pose>
+				<pose>0.6 -0.3 -0.06 0 0 0</pose>
 				<geometry>
 					<sphere>
 						<radius>.05</radius>
@@ -179,7 +157,7 @@
 				</surface>
 			</collision>
 			<visual name="right_caster_visual">
-				<pose>1.2 -0.3 -0.01 0 0 0</pose>
+				<pose>0.6 -0.3 -0.06 0 0 0</pose>
 				<geometry>
 					<sphere>
 						<radius>.05</radius>
@@ -188,7 +166,7 @@
 			</visual>
 
 			<collision name="left_fork_collision">
-				<pose>0.7 0.3 0.04 0 0 0</pose>
+				<pose>0.1 0.3 -0.01 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>1.2 0.2 0.1</size>
@@ -196,7 +174,7 @@
 				</geometry>
 			</collision>
 			<visual name="left_fork_visual">
-				<pose>0.7 0.3 0.04 0 0 0</pose>
+				<pose>0.1 0.3 -0.01 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>1.2 0.2 0.1</size>
@@ -205,7 +183,7 @@
 			</visual>
 
 			<collision name="left_caster_collision">
-				<pose>1.2 0.3 -0.01 0 0 0</pose>
+				<pose>0.6 0.3 -0.06 0 0 0</pose>
 				<geometry>
 					<sphere>
 						<radius>.05</radius>
@@ -223,7 +201,7 @@
 				</surface>
 			</collision>
 			<visual name="left_caster_visual">
-				<pose>1.2 0.3 -0.01 0 0 0</pose>
+				<pose>0.6 0.3 -0.06 0 0 0</pose>
 				<geometry>
 					<sphere>
 						<radius>.05</radius>
@@ -234,11 +212,14 @@
 
 		<!--DIFFERENTIAL DRIVE WHEELS-->
 		<link name="diffdrive_right_wheel">
-			<pose>0.05 -0.07 0.04 0 1.5707 1.5707</pose>
+			<pose>0 -0.07 0.045 0 1.5707 1.5707</pose>
+			<inertial>
+				<mass>5</mass>
+			</inertial>
 			<collision name="collision">
 				<geometry>
 					<cylinder>
-						<radius>.04</radius>
+						<radius>.045</radius>
 						<length>.03</length>
 					</cylinder>
 				</geometry>
@@ -246,7 +227,7 @@
 			<visual name="visual">
 				<geometry>
 					<cylinder>
-						<radius>.04</radius>
+						<radius>.045</radius>
 						<length>.03</length>
 					</cylinder>
 				</geometry>
@@ -254,11 +235,14 @@
 		</link>
 
 		<link name="diffdrive_left_wheel">
-			<pose>0.05 0.07 0.04 0 1.5707 1.5707</pose>
+			<pose>0 0.07 0.045 0 1.5707 1.5707</pose>
+			<inertial>
+				<mass>5</mass>
+			</inertial>
 			<collision name="collision">
 				<geometry>
 					<cylinder>
-						<radius>.04</radius>
+						<radius>.045</radius>
 						<length>.03</length>
 					</cylinder>
 				</geometry>
@@ -266,7 +250,7 @@
 			<visual name="visual">
 				<geometry>
 					<cylinder>
-						<radius>.04</radius>
+						<radius>.045</radius>
 						<length>.03</length>
 					</cylinder>
 				</geometry>
@@ -293,8 +277,12 @@
 
 		<!--ELEVATING FORKS-->
 		<link name="elevating_fork">
-			<pose>0.05 0 0.175 0 0 0</pose>
+			<pose>0.7 0 0.175 0 0 0</pose>
+			<inertial>
+				<mass>50</mass>
+			</inertial>
 			<collision name="collision">
+				<pose>-0.65 0 0 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>0.1 0.8 0.05</size>
@@ -312,6 +300,7 @@
 				</surface>
 			</collision>
 			<visual name="visual">
+				<pose>-0.65 0 0 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>0.1 0.8 0.05</size>
@@ -320,7 +309,7 @@
 			</visual>
 
 			<collision name="elevating_right_fork_collision">
-				<pose>0.65 -0.3 0 0 0 0</pose>
+				<pose>0 -0.3 0 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>1.2 0.2 0.05</size>
@@ -338,7 +327,7 @@
 				</surface>
 			</collision>
 			<visual name="elevating_right_fork_visual">
-				<pose>0.65 -0.3 0 0 0 0</pose>
+				<pose>0 -0.3 0 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>1.2 0.2 0.05</size>
@@ -347,7 +336,7 @@
 			</visual>
 
 			<collision name="elevating_left_fork_collision">
-				<pose>0.65 0.3 0 0 0 0</pose>
+				<pose>0 0.3 0 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>1.2 0.2 0.05</size>
@@ -365,7 +354,7 @@
 				</surface>
 			</collision>
 			<visual name="elevating_left_fork_visual">
-				<pose>0.65 0.3 0 0 0 0</pose>
+				<pose>0 0.3 0 0 0 0</pose>
 				<geometry>
 					<box>
 						<size>1.2 0.2 0.05</size>
