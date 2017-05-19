@@ -19,9 +19,10 @@ namespace gazebo {
 			
 			this->model = _parent;
 			
-			if(_sdf->HasElement("elevating_fork")){			
-				this->forkPtr = this->model->GetLink("elevating_fork");
-			} 
+			this->forkPtr = this->model->GetLink("elevating_fork");
+
+			if(!forkPtr)
+				std::cout << "ERROR: forkPtr is NULL\n";
 
 			sensors::SensorPtr sensor = sensors::get_sensor("laser");
 			if (sensor->Type() == "ray")
@@ -44,7 +45,6 @@ namespace gazebo {
 			for(int i =0; i < this->laserPtr-> RangeCount(); i++){
 
 				if( this->laserPtr->Range(i) < this->laserPtr->RangeMax()){
-					std::cout << "Range minore di max per raggio " << i << " \n";
 					object = 1;
 				}
 
@@ -52,10 +52,8 @@ namespace gazebo {
 			this->laserPtr->SetActive(true);
 
 			if(object == 1){
-				std::cout << "alzo\n";
-				this->model->SetLinearVel(math::Vector3(1.30, 0, 0));
 				object=0;
-				//this->forkPtr->SetForce(math::Vector3(0, 0, 13));
+				this->forkPtr->SetForce(math::Vector3(0, 0, 1300));
 			}
 		}
 
