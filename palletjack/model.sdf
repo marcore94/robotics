@@ -415,6 +415,7 @@
 			</axis>
 		</joint>
 
+		<plugin name="ControlForkPlugin" filename="libControlForkPlugin.so"/>
 		<!--<plugin name="ElevateForkPlugin" filename="libElevateForkPlugin.so"/>
 		<!--<plugin name="Move_Plugin" filename="libMovePlugin.so"/>-->
 	</model>
