@@ -68,33 +68,29 @@ void ROSnode::keyRun()
 			perror("read():");
 			exit(-1);
 		}
-		
+
 		linearVel = angularVel = 0;
-		ROS_DEBUG("value: 0x%02X\n", c);
-		
+
 		switch(c)
 		{
 			case KEYCODE_W:
-				ROS_DEBUG("UP");
 				linearVel = 1.0;
 				dirty = true;
 				break;
 			case KEYCODE_S:
-				ROS_DEBUG("DOWN");
 				linearVel = -1.0;
 				dirty = true;
 				break;
 			case KEYCODE_A:
-				ROS_DEBUG("LEFT");
 				angularVel = 1.0;
 				dirty = true;
 				break;
 			case KEYCODE_D:
-				ROS_DEBUG("RIGHT");
 				angularVel = -1.0;
 				dirty = true;
 				break;
 		}
+
 		sensor_msgs::Joy msg;
 		msg.axes.resize(3);
 		msg.axes[1] = linearVel;
@@ -103,6 +99,11 @@ void ROSnode::keyRun()
 		{
 			joyPub.publish(msg);
 			dirty = false;
+			usleep(500000);
+			msg.axes.resize(3);
+			msg.axes[1] = 0;
+			msg.axes[2] = 0;
+			joyPub.publish(msg);
 		}
 	}
 	return;
