@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "sensor_msgs/Joy.h"
 #include "geometry_msgs/Twist.h"
+#include "turtlebot_controller/SetMode.h"
 
 
 #define RUN_PERIOD_DEFAULT 0.1
@@ -12,6 +13,7 @@ private:
     ros::NodeHandle Handle;
     ros::Subscriber joySub;
     ros::Publisher cmdPub;
+	ros::ServiceClient clientMode;
     
     geometry_msgs::Twist out;
             
@@ -24,25 +26,40 @@ public:
 
 void ROSnode::Prepare() {
     joySub = Handle.subscribe("joy", 10, &ROSnode::joyCallback, this);    
-    cmdPub = Handle.advertise<geometry_msgs::Twist>("mobile_base/commands/velocity", 10);
+	//cmdPub = Handle.advertise<geometry_msgs::Twist>("mobile_base/commands/velocity", 10);
 	//cmdPub = Handle.advertise<geometry_msgs::Twist>("turtle1/cmd_vel", 1);
-    
-    Handle.param("/max_linear", maxLinear, 1.0);
-    Handle.param("/max_angular", maxAngular, 1.0);    
-    
-    
+	cmdPub = Handle.advertise<geometry_msgs::Twist>("cmd_joy", 10);
+	
+	Handle.param("/max_linear", maxLinear, 1.0);
+	Handle.param("/max_angular", maxAngular, 1.0);
+	
+	clientMode = Handle.serviceClient<turtlebot_controller::SetMode>("mode");
+
     ROS_INFO("Node %s ready to run.", ros::this_node::getName().c_str());
 }
 
 void ROSnode::joyCallback(const sensor_msgs::Joy::ConstPtr& msg) {
-//     geometry_msgs::Twist out;
-    //left analog up/down
-    out.linear.x = maxLinear * msg->axes[1];
-    
-    //right analog left/right
-    out.angular.z = maxAngular * msg->axes[2];
-    
-//     cmdPub.publish(out);
+
+    if(msg->buttons[0] == 1)
+	{
+		//set manual mode
+		turtlebot_controller::SetMode srv;
+		srv.request.mode = 0;
+		clientMode.call(srv);
+	}
+	else if(msg->buttons[1] == 1)
+	{
+		//set auto mode
+		turtlebot_controller::SetMode srv;
+		srv.request.mode = 1;
+		clientMode.call(srv);
+	}
+	
+	//left analog up/down
+	out.linear.x = maxLinear * msg->axes[1];
+	
+	//right analog left/right
+	out.angular.z = maxAngular * msg->axes[2];
 }
 
 void ROSnode::RunContinuously() {

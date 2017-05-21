@@ -6,10 +6,10 @@
 
 #define RUN_PERIOD_DEFAULT 0.1
 #define NAME_OF_THIS_NODE "joypad_simulator"
-#define KEYCODE_W 0x41
-#define KEYCODE_S 0x42
-#define KEYCODE_D 0x43 
-#define KEYCODE_A 0x44
+#define KEYCODE_UP 0x41
+#define KEYCODE_DOWN 0x42
+#define KEYCODE_RIGHT 0x43 
+#define KEYCODE_LEFT 0x44
 
 class ROSnode 
 {
@@ -17,6 +17,7 @@ private:
 	ros::NodeHandle Handle;
 	ros::Publisher joyPub;
 	
+	int manMode, autMode;
 	float linearVel, angularVel;
 	
 public:
@@ -29,6 +30,8 @@ void ROSnode::Prepare()
 	joyPub = Handle.advertise<sensor_msgs::Joy>("joy",1);
 	linearVel = 0;
 	angularVel = 0;
+	manMode = 0;
+	autMode = 0;
 	
 	ROS_INFO("Node %s ready to run.", ros::this_node::getName().c_str());
 }
@@ -57,9 +60,10 @@ void ROSnode::keyRun()
 	raw.c_cc[VEOF] = 2;
 	tcsetattr(kfd, TCSANOW, &raw);
 	
+	puts("---------------------------");
 	puts("Simulating joypad");
 	puts("---------------------------");
-	puts("Use arrow keys to move");
+	puts("Use arrow keys to move, 'a' to select auto mode and 'm' to select manual mode");
 	
 	for(;;)
 	{
@@ -70,39 +74,56 @@ void ROSnode::keyRun()
 		}
 
 		linearVel = angularVel = 0;
+		manMode = autMode = 0;
 
 		switch(c)
 		{
-			case KEYCODE_W:
+			case KEYCODE_UP:
 				linearVel = 1.0;
 				dirty = true;
 				break;
-			case KEYCODE_S:
+			case KEYCODE_DOWN:
 				linearVel = -1.0;
 				dirty = true;
 				break;
-			case KEYCODE_A:
+			case KEYCODE_LEFT:
 				angularVel = 1.0;
 				dirty = true;
 				break;
-			case KEYCODE_D:
+			case KEYCODE_RIGHT:
 				angularVel = -1.0;
+				dirty = true;
+				break;
+			case 'm':
+				manMode = 1;
+				puts("manual mode selected");
+				dirty = true;
+				break;
+			case 'a':
+				autMode = 1;
+				puts("auto mode selected");
 				dirty = true;
 				break;
 		}
 
 		sensor_msgs::Joy msg;
 		msg.axes.resize(3);
+		msg.buttons.resize(2);
 		msg.axes[1] = linearVel;
 		msg.axes[2] = angularVel;
+		msg.buttons[0] = manMode;
+		msg.buttons[1] = autMode;
 		if(dirty == true)
 		{
 			joyPub.publish(msg);
 			dirty = false;
 			usleep(500000);
 			msg.axes.resize(3);
+			msg.buttons.resize(2);
 			msg.axes[1] = 0;
 			msg.axes[2] = 0;
+			msg.buttons[0] = 0;
+			msg.buttons[1] = 0;
 			joyPub.publish(msg);
 		}
 	}
