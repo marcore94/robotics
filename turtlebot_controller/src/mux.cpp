@@ -22,6 +22,7 @@ private:
     void joyCallback(const geometry_msgs::Twist::ConstPtr& msg);
     void autoCallback(const geometry_msgs::Twist::ConstPtr& msg);
     bool modeService(turtlebot_controller::SetMode::Request &req, turtlebot_controller::SetMode::Response &res);
+
 public:    
     void Prepare();
     void RunContinuously();

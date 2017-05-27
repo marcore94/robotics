@@ -60,6 +60,7 @@ find_package(catkin REQUIRED COMPONENTS
  add_service_files(
    FILES
    SetMode.srv
+   GetGoal.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -73,6 +74,7 @@ find_package(catkin REQUIRED COMPONENTS
  generate_messages(
    DEPENDENCIES
    std_msgs
+   geometry_msgs
  )
 
 ################################################
@@ -144,6 +146,12 @@ target_link_libraries(joypad_simulator ${catkin_LIBRARIES})
 
 add_executable(mux src/mux.cpp)
 target_link_libraries(mux ${catkin_LIBRARIES})
+
+add_executable(pose src/pose.cpp)
+target_link_libraries(pose ${catkin_LIBRARIES})
+
+add_executable(control src/control.cpp)
+target_link_libraries(control ${catkin_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
