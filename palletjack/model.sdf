@@ -398,7 +398,7 @@
 		</link>
 
 		<joint type="prismatic" name="right_prism">
-			<pose>0 -0.3 -0.025 0 0 0</pose>
+			<pose>-0.6 -0.3 -0.025 0 0 0</pose>
 			<child>elevating_fork</child>
 			<parent>chassis</parent>
 			<axis>
@@ -411,7 +411,7 @@
 		</joint>
 
 		<joint type="prismatic" name="left_prism">
-			<pose>0 0.3 -0.025 0 0 0</pose>
+			<pose>-0.6 0.3 -0.025 0 0 0</pose>
 			<child>elevating_fork</child>
 			<parent>chassis</parent>
 			<axis>
@@ -424,7 +424,7 @@
 		</joint>
 
 		<joint type="prismatic" name="right_back_prism">
-			<pose>0.5 -0.3 -0.11 0 -0 0</pose>
+			<pose>0.5 -0.3 -0.025 0 -0 0</pose>
 			<!--<pose>1.15 -0.3 -0.025 0 0 0</pose>-->
 			<child>elevating_fork</child>
 			<parent>chassis</parent>
@@ -438,7 +438,7 @@
 		</joint>
 
 		<joint type="prismatic" name="left_back_prism">
-			<pose>0.5 0.3 -0.11 0 0 0</pose>
+			<pose>0.5 0.3 -0.025 0 0 0</pose>
 			<!--<pose>1.15 0.3 -0.025 0 0 0</pose>-->
 			<child>elevating_fork</child>
 			<parent>chassis</parent>
