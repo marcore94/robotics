@@ -148,10 +148,10 @@
 				<surface>
 					<friction>
 						<ode>
-							<mu>0</mu>
-							<mu2>0</mu2>
-							<slip1>1.0</slip1>
-							<slip2>1.0</slip2>
+							<mu>1</mu>
+							<mu2>1</mu2>
+							<slip1>1</slip1>
+							<slip2>1</slip2>
 						</ode>
 					</friction>
 				</surface>
@@ -192,10 +192,10 @@
 				<surface>
 					<friction>
 						<ode>
-							<mu>0</mu>
-							<mu2>0</mu2>
-							<slip1>1.0</slip1>
-							<slip2>1.0</slip2>
+							<mu>1</mu>
+							<mu2>1</mu2>
+							<slip1>1</slip1>
+							<slip2>1</slip2>
 						</ode>
 					</friction>
 				</surface>
@@ -263,6 +263,9 @@
 			<parent>chassis</parent>
 			<axis>
 				<xyz>0 1 0</xyz>
+				<dynamics> <!---------------------------------------------------------------------------------->
+					<damping>100</damping>
+				</dynamics>
 			</axis>
 		</joint>
 
@@ -272,6 +275,9 @@
 			<parent>chassis</parent>
 			<axis>
 				<xyz>0 1 0</xyz>
+				<dynamics> <!---------------------------------------------------------------------------------->
+					<damping>100</damping>
+				</dynamics>
 			</axis>
 		</joint>
 
@@ -293,8 +299,8 @@
 						<ode>
 							<mu>1</mu>
 							<mu2>1</mu2>
-							<slip1>0</slip1>
-							<slip2>0</slip2>
+							<slip1>1</slip1>
+							<slip2>1</slip2>
 						</ode>
 					</friction>
 				</surface>
@@ -320,8 +326,8 @@
 						<ode>
 							<mu>1</mu>
 							<mu2>1</mu2>
-							<slip1>0</slip1>
-							<slip2>0</slip2>
+							<slip1>1</slip1>
+							<slip2>1</slip2>
 						</ode>
 					</friction>
 				</surface>
@@ -348,8 +354,8 @@
 						<ode>
 							<mu>1</mu>
 							<mu2>1</mu2>
-							<slip1>0</slip1>
-							<slip2>0</slip2>
+							<slip1>1</slip1>
+							<slip2>1</slip2>
 						</ode>
 					</friction>
 				</surface>
@@ -375,8 +381,8 @@
 						<ode>
 							<mu>1</mu>
 							<mu2>1</mu2>
-							<slip1>0</slip1>
-							<slip2>0</slip2>
+							<slip1>1</slip1>
+							<slip2>1</slip2>
 						</ode>
 					</friction>
 				</surface>
@@ -418,7 +424,8 @@
 		</joint>
 
 		<joint type="prismatic" name="right_back_prism">
-			<pose>1.15 -0.3 -0.025 0 0 0</pose>
+			<pose>0.5 -0.3 -0.11 0 -0 0</pose>
+			<!--<pose>1.15 -0.3 -0.025 0 0 0</pose>-->
 			<child>elevating_fork</child>
 			<parent>chassis</parent>
 			<axis>
@@ -431,7 +438,8 @@
 		</joint>
 
 		<joint type="prismatic" name="left_back_prism">
-			<pose>1.15 0.3 -0.025 0 0 0</pose>
+			<pose>0.5 0.3 -0.11 0 0 0</pose>
+			<!--<pose>1.15 0.3 -0.025 0 0 0</pose>-->
 			<child>elevating_fork</child>
 			<parent>chassis</parent>
 			<axis>
@@ -444,6 +452,6 @@
 		</joint>
 
 		<plugin name="ControlPlugin" filename="libControlPlugin.so"/>
-	
+
 	</model>
 </sdf>
