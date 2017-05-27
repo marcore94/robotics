@@ -61,10 +61,10 @@ void ControlPlugin::OnUpdate(const common::UpdateInfo & /*_info*/) {
 
 void ControlPlugin::InitPIDJoint(){
 
-	this->pid_right = common::PID(385.5, 45.5, 2.8); //(800, 500, 0)
-	this->pid_left = common::PID(385.5, 45.5, 2.8);
-	this->pid_back_right = common::PID(385.5, 45.5, 2.8);
-	this->pid_back_left = common::PID(385.5, 45.5, 2.8);
+	this->pid_right = common::PID(235.5, 135.5, 2.65); //(800, 500, 0) (385.5, 45.5, 2.7)
+	this->pid_left = common::PID(235.5, 135.5, 2.65);
+	this->pid_back_right = common::PID(235.5, 135.5, 2.65);
+	this->pid_back_left = common::PID(235.5, 135.5, 2.65);
 
 }
 
@@ -80,8 +80,10 @@ void ControlPlugin::SetPIDJoint(){
 	this->model->GetJointController()->SetPositionPID(this->backRightJoint->GetScopedName(), this->pid_back_right);
 	this->model->GetJointController()->SetPositionPID(this->backLeftJoint->GetScopedName(), this->pid_back_left);
 	
-	this->model->GetJointController()->SetPositionTarget(this->rightJoint->GetScopedName(), 0.2);	 
-	this->model->GetJointController()->SetPositionTarget(this->leftJoint->GetScopedName(), 0.2); 	
-	this->model->GetJointController()->SetPositionTarget(this->backRightJoint->GetScopedName(), 0.2);
-	this->model->GetJointController()->SetPositionTarget(this->backLeftJoint->GetScopedName(), 0.2);
+	this->model->GetJointController()->SetPositionTarget(this->rightJoint->GetScopedName(), 0.225);	 
+	this->model->GetJointController()->SetPositionTarget(this->leftJoint->GetScopedName(), 0.225); 	
+	this->model->GetJointController()->SetPositionTarget(this->backRightJoint->GetScopedName(), 0.225);
+	this->model->GetJointController()->SetPositionTarget(this->backLeftJoint->GetScopedName(), 0.225);
+
+	//this->model->GetJointController()->Update();
 }
