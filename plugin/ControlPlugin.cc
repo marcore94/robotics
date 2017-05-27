@@ -61,10 +61,10 @@ void ControlPlugin::OnUpdate(const common::UpdateInfo & /*_info*/) {
 
 void ControlPlugin::InitPIDJoint(){
 
-	this->pid_right = common::PID(800, 500, 0);//800, x, 0
-	this->pid_left = common::PID(800, 500, 0);
-	this->pid_back_right = common::PID(800, 500, 0);
-	this->pid_back_left = common::PID(800, 500, 0);
+	this->pid_right = common::PID(285.5, 245.5, 2.8); //(800, 500, 0)
+	this->pid_left = common::PID(285.5, 245.5, 2.8);
+	this->pid_back_right = common::PID(285.5, 245.5, 2.8);
+	this->pid_back_left = common::PID(285.5, 245.5, 2.8);
 }
 
 void ControlPlugin::SetPIDJoint(){

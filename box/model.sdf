@@ -4,7 +4,7 @@
 		<link name="box_chassis">
 			<pose>0 0 0.7 0 0 0</pose>
 			<inertial>
-					<mass>1</mass>
+					<mass>200</mass>
 			</inertial>
 			<collision name="collision">
 				<geometry>
