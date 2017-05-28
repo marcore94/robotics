@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   genmsg
   message_generation
+  nav_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -152,6 +153,9 @@ target_link_libraries(pose ${catkin_LIBRARIES})
 
 add_executable(control src/control.cpp)
 target_link_libraries(control ${catkin_LIBRARIES})
+
+add_executable(goal_tracker src/goal_tracker.cpp)
+target_link_libraries(goal_tracker ${catkin_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

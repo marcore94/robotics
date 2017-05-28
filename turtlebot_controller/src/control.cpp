@@ -5,7 +5,6 @@
 #include "tf/transform_datatypes.h"
 #include "math.h"
 
-#define RUN_PERIOD_DEFAULT 0.1
 #define NAME_OF_THIS_NODE "control"
 
 class ROSnode
@@ -117,7 +116,7 @@ int main(int argc, char **argv)
 {
 	ros::init(argc, argv, NAME_OF_THIS_NODE);
 	
-	ROSnode pNode;
-	pNode.Prepare();
-	pNode.runContinuously();
+	ROSnode cNode;
+	cNode.Prepare();
+	cNode.runContinuously();
 }

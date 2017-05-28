@@ -96,14 +96,14 @@ void ROSnode::autoCallback(const geometry_msgs::Twist::ConstPtr& msg) {
 //-----------------------------------------------------------------
 
 int main(int argc, char **argv) {
-  ros::init(argc, argv, NAME_OF_THIS_NODE);
-  ROSnode mNode;
-   
-  mNode.Prepare();
-  mNode.RunContinuously();
-  //mNode.RunPeriodically();
+	ros::init(argc, argv, NAME_OF_THIS_NODE);
+	ROSnode mNode;
   
-  return (0);
+	mNode.Prepare();
+	mNode.RunContinuously();
+	//mNode.RunPeriodically();
+  
+	return (0);
 }
 
 

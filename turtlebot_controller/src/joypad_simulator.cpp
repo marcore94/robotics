@@ -63,7 +63,7 @@ void ROSnode::keyRun()
 	puts("---------------------------");
 	puts("Simulating joypad");
 	puts("---------------------------");
-	puts("Use arrow keys to move, 'a' to select auto mode and 'm' to select manual mode");
+	puts("Use arrow keys to move, 'g' to select goal mode (auto) and 'm' to select manual mode");
 	
 	for(;;)
 	{
@@ -75,44 +75,74 @@ void ROSnode::keyRun()
 
 		linearVel = angularVel = 0;
 		manMode = autMode = 0;
+		
+		sensor_msgs::Joy msg;
+		msg.axes.resize(4);
+		msg.buttons.resize(3);
+		msg.axes[0] = 0.0;
+		msg.axes[1] = linearVel;
+		msg.axes[2] = angularVel;
+		msg.axes[3] = 0.0;
+		msg.buttons[0] = manMode;
+		msg.buttons[1] = autMode;
+		msg.buttons[2] = 0;
 
 		switch(c)
 		{
 			case KEYCODE_UP:
 				linearVel = 1.0;
+				msg.axes[1] = linearVel;
 				dirty = true;
 				break;
 			case KEYCODE_DOWN:
 				linearVel = -1.0;
+				msg.axes[1] = linearVel;
 				dirty = true;
 				break;
 			case KEYCODE_LEFT:
 				angularVel = 1.0;
+				msg.axes[2] = angularVel;
 				dirty = true;
 				break;
 			case KEYCODE_RIGHT:
 				angularVel = -1.0;
+				msg.axes[2] = angularVel;
+				dirty = true;
+				break;
+			case 'a':
+				msg.axes[0] = 1.0;
+				dirty = true;
+				break;
+			case 'd':
+				msg.axes[0] = -1.0;
+				dirty = true;
+				break;
+			case 'w':
+				msg.axes[3] = 1.0;
+				dirty = true;
+				break;
+			case 's':
+				msg.axes[3] = -1.0;
 				dirty = true;
 				break;
 			case 'm':
 				manMode = 1;
+				msg.buttons[0] = manMode;
 				puts("manual mode selected");
 				dirty = true;
 				break;
-			case 'a':
+			case 'g':
 				autMode = 1;
+				msg.buttons[1] = autMode;
 				puts("auto mode selected");
+				dirty = true;
+				break;
+			case 'e':
+				msg.buttons[2] = 1;
 				dirty = true;
 				break;
 		}
 
-		sensor_msgs::Joy msg;
-		msg.axes.resize(3);
-		msg.buttons.resize(2);
-		msg.axes[1] = linearVel;
-		msg.axes[2] = angularVel;
-		msg.buttons[0] = manMode;
-		msg.buttons[1] = autMode;
 		if(dirty == true)
 		{
 			joyPub.publish(msg);
@@ -120,10 +150,13 @@ void ROSnode::keyRun()
 			usleep(500000);
 			msg.axes.resize(3);
 			msg.buttons.resize(2);
+			msg.axes[0] = 0;
 			msg.axes[1] = 0;
 			msg.axes[2] = 0;
+			msg.axes[3] = 0;
 			msg.buttons[0] = 0;
 			msg.buttons[1] = 0;
+			msg.buttons[2] = 0;
 			joyPub.publish(msg);
 		}
 	}

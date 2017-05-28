@@ -3,7 +3,6 @@
 #include "nav_msgs/Odometry.h"
 #include "tf/transform_datatypes.h"
 
-#define RUN_PERIOD_DEFAULT 0.1
 #define NAME_OF_THIS_NODE "pose"
 
 class ROSnode
