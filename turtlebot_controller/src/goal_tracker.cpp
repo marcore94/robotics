@@ -25,7 +25,8 @@ void ROSnode::Prepare()
 {
 	gotGoal = false;
 	
-	goalSub = Handle.subscribe("/getGoal", 10, &ROSnode::planCallback, this);
+	//goalSub = Handle.subscribe("/getGoal", 10, &ROSnode::planCallback, this);
+	goalSub = Handle.subscribe("/goal", 10, &ROSnode::planCallback, this);
 	goalSr = Handle.advertiseService("goal", &ROSnode::goalService, this);
 }
 

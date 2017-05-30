@@ -1,4 +1,4 @@
-	cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 2.8.3)
 project(turtlebot_controller)
 
 ## Add support for C++11, supported in ROS Kinetic and newer
@@ -156,6 +156,9 @@ target_link_libraries(control ${catkin_LIBRARIES})
 
 add_executable(goal_tracker src/goal_tracker.cpp)
 target_link_libraries(goal_tracker ${catkin_LIBRARIES})
+
+add_executable(goal_publisher src/goal_publisher.cpp)
+target_link_libraries(goal_publisher ${catkin_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
