@@ -1,4 +1,6 @@
 #include "ControlPlugin.hh"
+#define DISTANCE_THRESHOLD 0.4
+#define RAY_THRESHOLD 0.9
 
 using namespace gazebo;
 
@@ -46,14 +48,14 @@ void ControlPlugin::OnUpdate(const common::UpdateInfo & /*_info*/) {
 	this->laserPtr->SetActive(false);
 	for(int i =0; i < this->laserPtr-> RangeCount(); i++){
 
-		if( this->laserPtr->Range(i) < 0.4*this->laserPtr->RangeMax()){
+		if( this->laserPtr->Range(i) < DISTANCE_THRESHOLD*this->laserPtr->RangeMax()){
 			count += 1;
 		}
 
 	}
 	this->laserPtr->SetActive(true);
 
-	if(count>=0.9*samples){
+	if(count >= RAY_THRESHOLD*samples){
 		
 		SetPIDJoint();	
 	}
@@ -61,10 +63,10 @@ void ControlPlugin::OnUpdate(const common::UpdateInfo & /*_info*/) {
 
 void ControlPlugin::InitPIDJoint(){
 
-	this->pid_right = common::PID(235.5, 135.5, 2.65); //(800, 500, 0) (385.5, 45.5, 2.7)
-	this->pid_left = common::PID(235.5, 135.5, 2.65);
-	this->pid_back_right = common::PID(235.5, 135.5, 2.65);
-	this->pid_back_left = common::PID(235.5, 135.5, 2.65);
+	this->pid_right = common::PID(175.5, 175.5, 1.95);
+	this->pid_left = common::PID(175.5, 175.5, 1.95);
+	this->pid_back_right = common::PID(175.5, 175.5, 1.95);
+	this->pid_back_left = common::PID(175.5, 175.5, 1.95);
 
 }
 
@@ -80,10 +82,9 @@ void ControlPlugin::SetPIDJoint(){
 	this->model->GetJointController()->SetPositionPID(this->backRightJoint->GetScopedName(), this->pid_back_right);
 	this->model->GetJointController()->SetPositionPID(this->backLeftJoint->GetScopedName(), this->pid_back_left);
 	
-	this->model->GetJointController()->SetPositionTarget(this->rightJoint->GetScopedName(), 0.225);	 
-	this->model->GetJointController()->SetPositionTarget(this->leftJoint->GetScopedName(), 0.225); 	
-	this->model->GetJointController()->SetPositionTarget(this->backRightJoint->GetScopedName(), 0.225);
-	this->model->GetJointController()->SetPositionTarget(this->backLeftJoint->GetScopedName(), 0.225);
+	this->model->GetJointController()->SetPositionTarget(this->rightJoint->GetScopedName(), 0.3);	 
+	this->model->GetJointController()->SetPositionTarget(this->leftJoint->GetScopedName(), 0.3); 	
+	this->model->GetJointController()->SetPositionTarget(this->backRightJoint->GetScopedName(), 0.3);
+	this->model->GetJointController()->SetPositionTarget(this->backLeftJoint->GetScopedName(), 0.3);
 
-	//this->model->GetJointController()->Update();
 }

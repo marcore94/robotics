@@ -5,6 +5,6 @@ include_directories(${GAZEBO_INCLUDE_DIRS})
 link_directories(${GAZEBO_LIBRARY_DIRS})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
-#Plugin di controllo forche con PID
+#Plugin used to control forks through a PID controller
 add_library(ControlPlugin SHARED ControlPlugin.cc)
 target_link_libraries(ControlPlugin ${GAZEBO_libraries})
