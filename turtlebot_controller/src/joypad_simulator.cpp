@@ -63,7 +63,8 @@ void ROSnode::keyRun()
 	puts("---------------------------");
 	puts("Simulating joypad");
 	puts("---------------------------");
-	puts("Use arrow keys to move, 'g' to select goal mode (auto) and 'm' to select manual mode");
+	puts("Use arroe keys and WASD to simulate joysticks, 'g' to select goal mode (auto), 'm' to select manual mode");
+	puts("Also 'e' is a simulated button");
 	
 	for(;;)
 	{
@@ -81,8 +82,8 @@ void ROSnode::keyRun()
 		msg.buttons.resize(3);
 		msg.axes[0] = 0.0;
 		msg.axes[1] = linearVel;
-		msg.axes[2] = angularVel;
-		msg.axes[3] = 0.0;
+		msg.axes[2] = 0.0;
+		msg.axes[3] = angularVel;
 		msg.buttons[0] = manMode;
 		msg.buttons[1] = autMode;
 		msg.buttons[2] = 0;
@@ -101,28 +102,28 @@ void ROSnode::keyRun()
 				break;
 			case KEYCODE_LEFT:
 				angularVel = 1.0;
-				msg.axes[2] = angularVel;
+				msg.axes[3] = angularVel;
 				dirty = true;
 				break;
 			case KEYCODE_RIGHT:
 				angularVel = -1.0;
-				msg.axes[2] = angularVel;
+				msg.axes[3] = angularVel;
 				dirty = true;
 				break;
 			case 'a':
-				msg.axes[0] = 1.0;
+				msg.axes[2] = 1.0;
 				dirty = true;
 				break;
 			case 'd':
-				msg.axes[0] = -1.0;
+				msg.axes[2] = -1.0;
 				dirty = true;
 				break;
 			case 'w':
-				msg.axes[3] = 1.0;
+				msg.axes[0] = 1.0;
 				dirty = true;
 				break;
 			case 's':
-				msg.axes[3] = -1.0;
+				msg.axes[0] = -1.0;
 				dirty = true;
 				break;
 			case 'm':
@@ -148,8 +149,8 @@ void ROSnode::keyRun()
 			joyPub.publish(msg);
 			dirty = false;
 			usleep(500000);
-			msg.axes.resize(3);
-			msg.buttons.resize(2);
+			msg.axes.resize(4);
+			msg.buttons.resize(3);
 			msg.axes[0] = 0;
 			msg.axes[1] = 0;
 			msg.axes[2] = 0;

@@ -25,10 +25,10 @@ public:
 };
 
 void ROSnode::Prepare() {
-    joySub = Handle.subscribe("joy", 10, &ROSnode::joyCallback, this);    
+    joySub = Handle.subscribe("joy", 1, &ROSnode::joyCallback, this);    
 	//cmdPub = Handle.advertise<geometry_msgs::Twist>("mobile_base/commands/velocity", 10);
 	//cmdPub = Handle.advertise<geometry_msgs::Twist>("turtle1/cmd_vel", 1);
-	cmdPub = Handle.advertise<geometry_msgs::Twist>("cmd_joy", 10);
+	cmdPub = Handle.advertise<geometry_msgs::Twist>("cmd_joy", 10	);
 	
 	Handle.param("/max_linear", maxLinear, 1.0);
 	Handle.param("/max_angular", maxAngular, 1.0);
@@ -59,7 +59,7 @@ void ROSnode::joyCallback(const sensor_msgs::Joy::ConstPtr& msg) {
 	out.linear.x = maxLinear * msg->axes[1];
 	
 	//right analog left/right
-	out.angular.z = maxAngular * msg->axes[2];
+	out.angular.z = maxAngular * msg->axes[3];
 }
 
 void ROSnode::RunContinuously() {

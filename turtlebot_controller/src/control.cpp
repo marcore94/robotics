@@ -85,7 +85,7 @@ void ROSnode::poseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg)
 			out.linear.x = 0.0;
 			position = true;
 		}
-		else if(actualDistance <= totalDistance * 0.5)
+		else if(actualDistance <= totalDistance * 0.5 && totalDistance > 0.05)
 		{
 			totalDistance = totalDistance * 0.5;
 			out.linear.x = 0.0;
