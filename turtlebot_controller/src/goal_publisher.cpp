@@ -6,6 +6,7 @@
 
 #include "ros/ros.h"
 #include "geometry_msgs/Pose.h"
+#include <tf/transform_datatypes.h>
 #include <stdio.h>
 #include <string>
 #include <signal.h>
@@ -44,7 +45,7 @@ void ROSnode::keyRun()
 {
 
 	std::string input;
-	double new_x, new_y, new_w;
+	double new_x, new_y, new_yaw;
 		
 	//console in raw mode
 	tcgetattr(kfd, &cooked);
@@ -59,7 +60,7 @@ void ROSnode::keyRun()
 	{
 		new_x = 0;
 		new_y = 0;
-		new_w = 0;
+		new_yaw = 0;
 
 		puts("Insert new goal");
 
@@ -74,23 +75,27 @@ void ROSnode::keyRun()
 		//std::getline(std::cin, input);
 		new_y = ::atof(input.c_str());
 		
-		std::cout << "Set w\n";
+		std::cout << "Set yaw\n";
 		std::cin >> input;
 		//puts("Set y");
 		//std::getline(std::cin, input);
-		new_w = ::atof(input.c_str());
+		new_yaw = ::atof(input.c_str());
 
 		do{
-			std::cout << "Confirm [x: " << new_x <<", y: " << new_y <<", w: " << new_w << "] as new goal? (y/n)\n";
+			std::cout << "Confirm [x: " << new_x <<", y: " << new_y <<", yaw: " << new_yaw << "] as new goal? (y/n)\n";
 			std::cin >> input;
 		}
 		while(input!="y" && input!="n");
 		if(input == "y"){
 				puts("Goal confirmed");
-				goal.orientation.x = new_x;
-				goal.orientation.y = new_y;
-				goal.orientation.z = 0;
-				goal.orientation.w = new_w;
+				goal.position.x = new_x;
+				goal.position.y = new_y;
+				goal.position.z = 0;
+				tf::Quaternion q = tf::createQuaternionFromYaw(new_yaw);
+				goal.orientation.x = q.getX();
+				goal.orientation.y = q.getY();
+				goal.orientation.z = q.getZ();
+				goal.orientation.w = q.getW();
 				goal_pub.publish(goal);
 			}
 		else	

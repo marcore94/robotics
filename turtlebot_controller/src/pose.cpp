@@ -24,6 +24,9 @@ bool ROSnode::Prepare()
 {
 	roll = 0.0;
 	pitch = 0.0;
+	yaw = 0.0;
+	x = 0;
+	y = 0;
 	t = -1.0;
 	
 	/*if(!Handle.getParam(ros::this_node::getName()+"/x", x))
