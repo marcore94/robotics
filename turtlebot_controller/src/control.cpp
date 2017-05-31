@@ -54,16 +54,12 @@ void ROSnode::poseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg)
 		position = false;
 		orientationCorrect = false;
 		finalOrientation = false;
-		std::cout << "gx = " << goal.position.x << ", px = " << msg->pose.position.x << "\n";
-		std::cout << "gy = " << goal.position.y << ", py = " << msg->pose.position.y << "\n";
 		totalDistance = sqrt(pow((goal.position.x - msg->pose.position.x), 2) + pow((goal.position.y - msg->pose.position.y), 2));
 	}
 	
 	if(!gotNewGoal && gotToGoal)
 		return;
-	
-	
-	std::cout << "total: " << totalDistance << "\n";
+
 	if(!orientationCorrect && !gotToGoal)
 	{
 		double gx = goal.position.x;
@@ -76,9 +72,6 @@ void ROSnode::poseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg)
 		q.setZ(msg->pose.orientation.z);
 		q.setW(msg->pose.orientation.w);
 		double yaw = tf::getYaw(q);
-		//double yaw = atan2(2 * (msg->pose.orientation.w * msg->pose.orientation.z + msg->pose.orientation.x * msg->pose.orientation.y),
-		//				   1 - 2 * (pow(msg->pose.orientation.y, 2) * pow(msg->pose.orientation.z, 2)));
-		std::cout << "yaw: " << yaw << "\nth: " << th << "\n";
 		if(fabs(yaw - th) < 0.005)
 		{
 			puts("orientation true");
@@ -91,10 +84,7 @@ void ROSnode::poseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg)
 	if(!position && orientationCorrect && !gotToGoal)
 	{
 		puts("set linear vel");
-		std::cout << "gx = " << goal.position.x << ", px = " << msg->pose.position.x << "\n";
-		std::cout << "gy = " << goal.position.y << ", py = " << msg->pose.position.y << "\n";
 		double actualDistance = pow(goal.position.x - msg->pose.position.x, 2) + pow(goal.position.y - msg->pose.position.y, 2);
-		std::cout << "actual: " << actualDistance << "\n";
 		if(actualDistance < 0.1 * 0.1)
 		{
 			out.linear.x = 0.0;
@@ -110,11 +100,11 @@ void ROSnode::poseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg)
 			}
 			else
 			{
-				if(actualDistance <= 3)
-					out.linear.x = actualDistance * 0.1;
+				if(actualDistance <= 2)
+					out.linear.x = actualDistance * 0.2;
 				else
 				{
-					if(actualDistance <= 10)
+					if(actualDistance <= 20)
 						out.linear.x = actualDistance * 0.01;
 					else
 						out.linear.x = 0.3;

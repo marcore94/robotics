@@ -2,5 +2,5 @@
 	<node pkg="turtlebot_controller" type="joy_cmd" name="joy_cmd"/>
 	<node pkg="turtlebot_controller" type="mux" name="mux"/>
 	<node pkg="turtlebot_controller" type="pose" name="pose"/>
-	<!--<node pkg="turtlebot_controller" type="control" name="control"/>-->
+	<node pkg="turtlebot_controller" type="control" name="control"/>
 </launch>

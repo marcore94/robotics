@@ -25,9 +25,7 @@ public:
 };
 
 void ROSnode::Prepare() {
-    joySub = Handle.subscribe("joy", 1, &ROSnode::joyCallback, this);    
-	//cmdPub = Handle.advertise<geometry_msgs::Twist>("mobile_base/commands/velocity", 10);
-	//cmdPub = Handle.advertise<geometry_msgs::Twist>("turtle1/cmd_vel", 1);
+    joySub = Handle.subscribe("joy", 10, &ROSnode::joyCallback, this);
 	cmdPub = Handle.advertise<geometry_msgs::Twist>("cmd_joy", 10	);
 	
 	Handle.param("/max_linear", maxLinear, 1.0);

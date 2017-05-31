@@ -29,13 +29,6 @@ bool ROSnode::Prepare()
 	y = 0;
 	t = -1.0;
 	
-	/*if(!Handle.getParam(ros::this_node::getName()+"/x", x))
-		return false;
-	if(!Handle.getParam(ros::this_node::getName()+"/y", y))
-		return false;
-	if(!Handle.getParam(ros::this_node::getName()+"/yaw", yaw))
-		return false;*/
-	
 	odomSub = Handle.subscribe("/odom", 10, &ROSnode::odomCallback, this);
 	posePub = Handle.advertise<geometry_msgs::PoseStamped>("/pose", 10);
 	
@@ -63,7 +56,7 @@ void ROSnode::odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
 	geometry_msgs::PoseStamped out;
 	out.header = msg->header;
 	out.header.frame_id = "/base_link";
-	//out.pose.orientation <- yawToQuaternion(yaw);
+	//quaternion from yaw
 	tf::Quaternion q = tf::createQuaternionFromYaw(yaw);
 	out.pose.orientation.x = q.getX();
 	out.pose.orientation.y = q.getY();

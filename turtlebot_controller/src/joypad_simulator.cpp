@@ -63,7 +63,7 @@ void ROSnode::keyRun()
 	puts("---------------------------");
 	puts("Simulating joypad");
 	puts("---------------------------");
-	puts("Use arroe keys and WASD to simulate joysticks, 'g' to select goal mode (auto), 'm' to select manual mode");
+	puts("Use arroe keys and WASD to simulate joysticks\nUse 'g' to select goal mode (auto)\nUse 'm' to select manual mode");
 	puts("Also 'e' is a simulated button");
 	
 	for(;;)

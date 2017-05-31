@@ -61,7 +61,6 @@ find_package(catkin REQUIRED COMPONENTS
  add_service_files(
    FILES
    SetMode.srv
-   GetGoal.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -153,9 +152,6 @@ target_link_libraries(pose ${catkin_LIBRARIES})
 
 add_executable(control src/control.cpp)
 target_link_libraries(control ${catkin_LIBRARIES})
-
-add_executable(goal_tracker src/goal_tracker.cpp)
-target_link_libraries(goal_tracker ${catkin_LIBRARIES})
 
 add_executable(goal_publisher src/goal_publisher.cpp)
 target_link_libraries(goal_publisher ${catkin_LIBRARIES})

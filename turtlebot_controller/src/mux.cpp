@@ -37,7 +37,6 @@ void ROSnode::Prepare() {
     autoSub = Handle.subscribe("cmd_auto", 10, &ROSnode::autoCallback, this);
     modeSr = Handle.advertiseService("mode", &ROSnode::modeService, this);
     cmdPub = Handle.advertise<geometry_msgs::Twist>("mobile_base/commands/velocity", 10);
-	//cmdPub = Handle.advertise<geometry_msgs::Twist>("turtle1/cmd_vel", 1);
     
     mode = 0;
     
@@ -63,13 +62,8 @@ void ROSnode::RunPeriodically() {
 }
 
 bool ROSnode::modeService(turtlebot_controller::SetMode::Request &req, turtlebot_controller::SetMode::Response &res) {
-	puts("a");
     mode = req.mode;
     res.ok = true;
-	if(mode == 0)
-		puts("mode set to manual");
-	else
-		puts("mode set to auto");
     
     return true;
 }
