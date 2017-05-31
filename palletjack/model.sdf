@@ -95,7 +95,6 @@
 						<resolution>0.01</resolution>
 					</range>
 				</ray>
-				<!--<plugin name="laser" filename="libRayPlugin.so"/>-->
 				<always_on>1</always_on>
 				<update_rate>30</update_rate>
 				<visualize>true</visualize>
@@ -148,10 +147,10 @@
 				<surface>
 					<friction>
 						<ode>
-							<mu>1</mu>
-							<mu2>1</mu2>
-							<slip1>1</slip1>
-							<slip2>1</slip2>
+							<mu>1000</mu>
+							<mu2>1000</mu2>
+							<slip1>0</slip1>
+							<slip2>0</slip2>
 						</ode>
 					</friction>
 				</surface>
@@ -192,10 +191,10 @@
 				<surface>
 					<friction>
 						<ode>
-							<mu>1</mu>
-							<mu2>1</mu2>
-							<slip1>1</slip1>
-							<slip2>1</slip2>
+							<mu>1000</mu>
+							<mu2>1000</mu2>
+							<slip1>0</slip1>
+							<slip2>0</slip2>
 						</ode>
 					</friction>
 				</surface>
@@ -263,7 +262,7 @@
 			<parent>chassis</parent>
 			<axis>
 				<xyz>0 1 0</xyz>
-				<dynamics> <!---------------------------------------------------------------------------------->
+				<dynamics> 
 					<damping>100</damping>
 				</dynamics>
 			</axis>
@@ -275,7 +274,7 @@
 			<parent>chassis</parent>
 			<axis>
 				<xyz>0 1 0</xyz>
-				<dynamics> <!---------------------------------------------------------------------------------->
+				<dynamics> 
 					<damping>100</damping>
 				</dynamics>
 			</axis>
@@ -297,10 +296,10 @@
 				<surface>
 					<friction>
 						<ode>
-							<mu>1</mu>
-							<mu2>1</mu2>
-							<slip1>1</slip1>
-							<slip2>1</slip2>
+							<mu>1000</mu>
+							<mu2>1000</mu2>
+							<slip1>0</slip1>
+							<slip2>0</slip2>
 						</ode>
 					</friction>
 				</surface>
@@ -324,10 +323,10 @@
 				<surface>
 					<friction>
 						<ode>
-							<mu>1</mu>
-							<mu2>1</mu2>
-							<slip1>1</slip1>
-							<slip2>1</slip2>
+							<mu>1000</mu>
+							<mu2>1000</mu2>
+							<slip1>0</slip1>
+							<slip2>0</slip2>
 						</ode>
 					</friction>
 				</surface>
@@ -352,10 +351,10 @@
 				<surface>
 					<friction>
 						<ode>
-							<mu>1</mu>
-							<mu2>1</mu2>
-							<slip1>1</slip1>
-							<slip2>1</slip2>
+							<mu>1000</mu>
+							<mu2>1000</mu2>
+							<slip1>0</slip1>
+							<slip2>0</slip2>
 						</ode>
 					</friction>
 				</surface>
@@ -379,10 +378,10 @@
 				<surface>
 					<friction>
 						<ode>
-							<mu>1</mu>
-							<mu2>1</mu2>
-							<slip1>1</slip1>
-							<slip2>1</slip2>
+							<mu>1000</mu>
+							<mu2>1000</mu2>
+							<slip1>0</slip1>
+							<slip2>0</slip2>
 						</ode>
 					</friction>
 				</surface>
@@ -425,7 +424,6 @@
 
 		<joint type="prismatic" name="right_back_prism">
 			<pose>0.5 -0.3 -0.025 0 -0 0</pose>
-			<!--<pose>1.15 -0.3 -0.025 0 0 0</pose>-->
 			<child>elevating_fork</child>
 			<parent>chassis</parent>
 			<axis>
@@ -439,7 +437,6 @@
 
 		<joint type="prismatic" name="left_back_prism">
 			<pose>0.5 0.3 -0.025 0 0 0</pose>
-			<!--<pose>1.15 0.3 -0.025 0 0 0</pose>-->
 			<child>elevating_fork</child>
 			<parent>chassis</parent>
 			<axis>
