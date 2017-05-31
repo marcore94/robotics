@@ -101,7 +101,7 @@ void ROSnode::poseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg)
 			else
 			{
 				if(actualDistance <= 2)
-					out.linear.x = actualDistance * 0.2;
+					out.linear.x = actualDistance * 0.1;
 				else
 				{
 					if(actualDistance <= 20)
