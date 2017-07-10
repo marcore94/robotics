@@ -36,6 +36,7 @@ void ROSnode::Prepare()
 
 void ROSnode::drawCallback(const polygons::Draw::ConstPtr& msg)
 {
+	ROS_INFO("Received polygon request");
 	polygons::DrawGoal goal;
 	goal.length = msg->length;
 	goal.sides = msg->sides;
@@ -43,16 +44,20 @@ void ROSnode::drawCallback(const polygons::Draw::ConstPtr& msg)
 					boost::bind(&ROSnode::doneCb, this, _1, _2),
 					Client::SimpleActiveCallback(),
 					boost::bind(&ROSnode::feedbackCb, this, _1));
+	ROS_INFO("Request sent to server");
 }
 
 void ROSnode::doneCb(const actionlib::SimpleClientGoalState& state, const polygons::DrawResultConstPtr& result)
 {
-
+	if(result->success)
+		ROS_INFO("Draw completed successfully");
+	else
+		ROS_INFO("Draw not completed");
 }
 
 void ROSnode::feedbackCb(const polygons::DrawFeedbackConstPtr& feedback)
 {
-
+	ROS_INFO("Side number %i drawn", feedback->drawn_sides);
 }
 
 void ROSnode::runContinuously() {
