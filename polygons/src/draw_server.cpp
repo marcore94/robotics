@@ -89,8 +89,8 @@ void ROSnode::execute(const polygons::DrawGoalConstPtr& goal)
 		/** pare funzionare, lo 0.05 è solo per stare sicuri nel caso in cui il turtlesim non giri perfettamente o non vada proprio
 		dritto, anche se non so se sia o meno un caso possibile
 		*/
-		if(!(((actualPose.x - previousPose.x)-(goal->length)*cos(actualPose.theta)) < 0.05 
-					&& ((actualPose.y - previousPose.y) - (goal->length)*sin(actualPose.theta)) < 0.05)){ 
+		if(!(fabs((actualPose.x - previousPose.x) - (goal->length)*cos(actualPose.theta)) < 0.05 
+					&& fabs((actualPose.y - previousPose.y) - (goal->length)*sin(actualPose.theta)) < 0.05)	){ 
 				//ROS_INFO("DELTA X - R*COS(THETA): %f", (actualPose.x - previousPose.x)-(goal->length)*cos(actualPose.theta));
 				//ROS_INFO("DELTA Y - R*SIN(THETA): %f", (actualPose.y - previousPose.y)-(goal->length)*sin(actualPose.theta));
 				hit_the_wall = true;

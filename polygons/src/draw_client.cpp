@@ -52,7 +52,7 @@ void ROSnode::doneCb(const actionlib::SimpleClientGoalState& state, const polygo
 	if(result->success)
 		ROS_INFO("Draw completed successfully");
 	else
-		ROS_INFO("Draw not completed");
+		ROS_INFO("Draw not completed, wall hit");
 }
 
 void ROSnode::feedbackCb(const polygons::DrawFeedbackConstPtr& feedback)
