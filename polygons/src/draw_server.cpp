@@ -96,6 +96,7 @@ void ROSnode::execute(const polygons::DrawGoalConstPtr& goal)
 				hit_the_wall = true;
 		}
 	}
+	usleep(500000);
 	result.success = !hit_the_wall;
 	server.setSucceeded(result);
 	if(!hit_the_wall){
