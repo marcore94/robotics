@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="mapping" type="laser_tf_broadcaster" name="laser_tf_broadcaster"/>
+	<node pkg="mapping" type="willy3_tf_broadcaster" name="willy3_tf_broadcaster"/>
+</launch>
