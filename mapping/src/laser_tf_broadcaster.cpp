@@ -13,7 +13,7 @@ int main(int argc, char** argv){
   ros::Rate rate(10.0);
   
   while (node.ok()){
-    transform.setOrigin( tf::Vector3(0.2, 0.0, 0.2) );
+    transform.setOrigin( tf::Vector3(0.2, 0.0, 0.1) );
 	tf::Quaternion q;
 	q.setRPY(0, 0, 0);
     transform.setRotation(q);

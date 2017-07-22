@@ -14,7 +14,7 @@ int main(int argc, char** argv){
   ros::init(argc, argv, "willy3_tf_broadcaster");
 
   ros::NodeHandle node;
-  ros::Subscriber sub = node.subscribe("/odom", 10, &poseCallback);
+  ros::Subscriber sub = node.subscribe("odom", 10, &poseCallback);
 
   ROS_INFO("Node %s ready to run.", ros::this_node::getName().c_str());
   

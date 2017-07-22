@@ -58,8 +58,6 @@ void ROSnode::keyRun()
 	tcsetattr(kfd, TCSANOW, &raw);
 	
 	puts("---------------------------");
-	puts("Simulating joypad");
-	puts("---------------------------");
 	puts("Use arrow keys to move");
 	
 	for(;;)
