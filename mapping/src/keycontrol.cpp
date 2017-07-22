@@ -75,12 +75,12 @@ void ROSnode::keyRun()
 		switch(c)
 		{
 			case KEYCODE_UP:
-				linearVel = -1.0;
+				linearVel = 1.0;
 				msg.linear.x = linearVel;
 				dirty = true;
 				break;
 			case KEYCODE_DOWN:
-				linearVel = 1.0;
+				linearVel = -1.0;
 				msg.linear.x = linearVel;
 				dirty = true;
 				break;

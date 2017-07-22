@@ -10,7 +10,7 @@ int main(int argc, char** argv){
   tf::TransformBroadcaster br;
   tf::Transform transform;
 
-  ros::Rate rate(10.0);
+  ros::Rate rate(1.0);
   
   while (node.ok()){
     transform.setOrigin( tf::Vector3(0.2, 0.0, 0.1) );
