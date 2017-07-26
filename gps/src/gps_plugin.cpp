@@ -98,6 +98,7 @@ void GPSRealPlugin::OnUpdate(sensors::GpsSensorPtr _sensor)
 		ROS_INFO("Translation disabled");
 	}
 	sensor_msgs::NavSatFix out;
+	out.header.stamp = ros::Time::now();
 	out.altitude = _sensor->Altitude();
 	out.latitude = _sensor->Latitude().Radian() * 180 / 3.14159265 + DELTA_TRANSLATION * translated;
 	out.longitude = _sensor->Longitude().Radian() * 180 / 3.14159265 + DELTA_TRANSLATION * translated;

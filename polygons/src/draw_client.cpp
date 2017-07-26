@@ -37,6 +37,16 @@ void ROSnode::Prepare()
 void ROSnode::drawCallback(const polygons::Draw::ConstPtr& msg)
 {
 	ROS_INFO("Received polygon request");
+	if(msg->length == 0)
+	{
+		ROS_ERROR("Cannot draw polygon with zero length");
+		return;
+	}
+	if(msg->sides < 3)
+	{
+		ROS_ERROR("Cannot draw polygon with less than 3 sides");
+		return;
+	}
 	polygons::DrawGoal goal;
 	goal.length = msg->length;
 	goal.sides = msg->sides;
